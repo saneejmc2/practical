@@ -1,0 +1,16 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: job1
+  namespace: ns1
+spec:
+  parallelism: 2
+  completions: 5
+  template:
+    spec:
+      containers:
+      - name: cntjob1 
+        image: busybox:latest
+        command: ["sh", "-c", "for i in $(seq 1 60); do echo 'Container: cntjob1, Count:' $i; sleep 1; done"]
+      restartPolicy: Never
+
