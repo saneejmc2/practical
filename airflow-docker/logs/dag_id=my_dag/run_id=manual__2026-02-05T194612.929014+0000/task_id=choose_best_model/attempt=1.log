@@ -1,0 +1,17 @@
+{"timestamp":"2026-02-05T19:46:19.416909Z","level":"info","event":"DAG bundles loaded: dags-folder, example_dags","logger":"airflow.dag_processing.bundles.manager.DagBundlesManager","filename":"manager.py","lineno":179}
+{"timestamp":"2026-02-05T19:46:19.418071Z","level":"info","event":"Filling up the DagBag from /opt/airflow/dags/my_dag.py","logger":"airflow.models.dagbag.DagBag","filename":"dagbag.py","lineno":593}
+{"timestamp":"2026-02-05T19:46:19.436500Z","level":"warning","event":"The `airflow.operators.python.PythonOperator` attribute is deprecated. Please use `'airflow.providers.standard.operators.python.PythonOperator'`.","category":"DeprecatedImportWarning","filename":"/opt/airflow/dags/my_dag.py","lineno":2,"logger":"py.warnings"}
+{"timestamp":"2026-02-05T19:46:19.436699Z","level":"warning","event":"The `airflow.operators.python.BranchPythonOperator` attribute is deprecated. Please use `'airflow.providers.standard.operators.python.BranchPythonOperator'`.","category":"DeprecatedImportWarning","filename":"/opt/airflow/dags/my_dag.py","lineno":2,"logger":"py.warnings"}
+{"timestamp":"2026-02-05T19:46:19.436776Z","level":"warning","event":"The `airflow.operators.bash.BashOperator` attribute is deprecated. Please use `'airflow.providers.standard.operators.bash.BashOperator'`.","category":"DeprecatedImportWarning","filename":"/opt/airflow/dags/my_dag.py","lineno":3,"logger":"py.warnings"}
+{"timestamp":"2026-02-05T19:46:19.460599Z","level":"info","event":"Task instance is in running state","logger":"task.stdout"}
+{"timestamp":"2026-02-05T19:46:19.461559Z","level":"info","event":" Previous state of the Task instance: TaskInstanceState.QUEUED","logger":"task.stdout"}
+{"timestamp":"2026-02-05T19:46:19.462424Z","level":"info","event":"Current task name:choose_best_model","logger":"task.stdout"}
+{"timestamp":"2026-02-05T19:46:19.463197Z","level":"info","event":"Dag name:my_dag","logger":"task.stdout"}
+{"timestamp":"2026-02-05T19:46:19.513262Z","level":"info","event":"Done. Returned value was: accurate","logger":"airflow.task.operators.airflow.providers.standard.operators.python.BranchPythonOperator","filename":"python.py","lineno":218}
+{"timestamp":"2026-02-05T19:46:19.514866Z","level":"info","event":"Branch into accurate","logger":"airflow.task.operators.airflow.providers.standard.operators.python.BranchPythonOperator","filename":"branch.py","lineno":44}
+{"timestamp":"2026-02-05T19:46:19.518003Z","level":"info","event":"Following branch {'accurate'}","logger":"airflow.task.operators.airflow.providers.standard.operators.python.BranchPythonOperator","filename":"skipmixin.py","lineno":152}
+{"timestamp":"2026-02-05T19:46:19.520113Z","level":"info","event":"Skipping tasks [('inaccurate', -1)]","logger":"airflow.task.operators.airflow.providers.standard.operators.python.BranchPythonOperator","filename":"skipmixin.py","lineno":191}
+{"timestamp":"2026-02-05T19:46:19.541872Z","level":"info","event":"Skipping downstream tasks.","logger":"task","filename":"task_runner.py","lineno":935}
+{"timestamp":"2026-02-05T19:46:19.589606Z","level":"info","event":"Task instance in success state","logger":"task.stdout"}
+{"timestamp":"2026-02-05T19:46:19.590521Z","level":"info","event":" Previous state of the Task instance: TaskInstanceState.RUNNING","logger":"task.stdout"}
+{"timestamp":"2026-02-05T19:46:19.591521Z","level":"info","event":"Task operator:<Task(BranchPythonOperator): choose_best_model>","logger":"task.stdout"}
