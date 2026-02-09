@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: svc1
+  namespace: ns1
+spec:
+  type: NodePort
+  selector:
+    app: nginx
+  ports:
+  - port: 80
+    targetPort: 80
+    nodePort: 30080
+# If you are uisng kind cluster and need to accesss the service/enginx page on your laptop, you need to port-forward 
+# the nodePort to a port on your laptop. Run the following command on your laptop terminal:
+# kubectl port-forward --namespace ns1 svc/svc1 8080:80
+# Then access the nginx page on your laptop browser at http://localhost:8080
+# If you are using minikube, you can access the service directly using the minikube IP and nodePort.
+# To get the minikube IP, run the command: minikube ip
+# Then access the nginx page on your laptop browser at http://<minikube-ip>:30080
+# If you are using a cloud provider (like GKE, EKS, AKS), you can change the service type to LoadBalancer to get
+# an external IP to access the service directly.
+# sudo -E kubectl port-forward svc/svc1 81:80 -n ns1 --address=0.0.0.0
