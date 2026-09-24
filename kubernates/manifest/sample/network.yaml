@@ -1,0 +1,34 @@
+# This network policy allows ingress traffic to pods with label app=nginx in namespace ns1 from:
+# 1. Any IP address ( 
+# 2. Any pod in namespace ns1
+# 3. Any pod with label app=nginx in any namespace
+# You can modify the network policy to allow traffic only from specific IPs, namespaces, or pods as needed.
+
+#  kubectl get networkpolicy -n ns1
+
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy 
+metadata:
+  name: np1
+  namespace: ns1
+spec:
+  podSelector:
+    matchLabels:
+      app: nginx
+  policyTypes:
+  - Ingress
+  ingress:
+  - from:
+    - ipBlock:
+        cidr: 0.0.0.0/0
+    - namespaceSelector:
+        matchLabels:
+          name: ns1
+    - podSelector:
+        matchLabels:
+          app: nginx
+  ports:
+  - protocol: TCP
+    port: 80
+
+

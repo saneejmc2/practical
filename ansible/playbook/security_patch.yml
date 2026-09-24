@@ -1,0 +1,52 @@
+---
+- name: Apply security patches and reboot if kernel updated
+  hosts: linux_servers
+  become: yes
+  gather_facts: yes
+  serial: "20%"     # Rolling updates across the fleet
+
+  vars:
+    reboot_required: false
+    app_service: sshd   # Change this to your application service
+
+
+    tasks:
+
+    - name: Register current kernel version
+      command: uname -r
+      register: kernel_before
+
+    - name: Apply security patches (RHEL/CentOS/Amazon Linux)
+      yum:
+        name: "*"
+        state: latest
+        security: yes
+      when: ansible_os_family == "RedHat"
+
+    - name: Apply security patches (Ubuntu/Debian)
+      apt:
+        upgrade: dist
+        only_upgrade: yes
+      when: ansible_os_family == "Debian"
+
+    - name: Register new kernel version
+      command: uname -r
+      register: kernel_after
+
+    - name: Reboot if kernel changed
+      reboot:
+        msg: "Reboot initiated by Ansible due to kernel update"
+        connect_timeout: 5
+        reboot_timeout: 600
+      when: kernel_before.stdout != kernel_after.stdout
+
+    - name: Wait for server to come back online
+      wait_for_connection:
+        delay: 10
+        timeout: 300
+
+    - name: Verify application service is running
+      service:
+        name: "{{ app_service }}"
+        state: started
+

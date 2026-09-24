@@ -1,0 +1,33 @@
+# This manifest defines an Ingress resource in Kubernetes that routes traffic to two different services based on the URL path. The Ingress is configured to handle requests for the host "wear.example.com" and route them to either the "wear-service" or the "watch-service" depending on the path specified in the request.
+# To apply this manifest, save it to a file named ingress_resource_watch.yaml and run:
+# kubectl apply -f ingress_resource_watch.yaml
+# After applying, you can check the status of the Ingress resource using:
+# kubectl get ingress ingress-wear-watch
+# You can also describe the Ingress to see more details about its configuration and status:
+# kubectl describe ingress ingress-wear-watch
+
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress-wear-watch
+spec:
+  rules:
+  - http:
+      paths:
+      - path: /wear
+        pathType: Prefix
+        backend:
+          service:
+            name: wear-service
+            port: 
+              number: 80
+      - path: /watch
+        pathType: Prefix
+        backend:
+          service:
+            name: watch-service
+            port: 
+              number: 80
+
+
+

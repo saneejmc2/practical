@@ -5,3 +5,16 @@ logs/
 *.env
 *.cfg
 
+# Terraform
+*.tfstate
+*.tfstate.*
+.terraform/
+.terraform.lock.hcl
+terraform.tfvars
+crash.log
+
+# Ansible
+*.pem
+*.key
+.vault_pass
+group_vars/secrets.yml

@@ -1,0 +1,42 @@
+# This docker-compose file sets up a simple monitoring stack with Prometheus and Grafana.
+# docker-compose up -d
+#Now in Grafana, set the Prometheus URL to:
+# http://prometheus:9090
+#########
+#version: '3'
+#services:
+#  prometheus:
+#    image: prom/prometheus
+#    ports:
+#      - "9090:9090"
+#
+#  grafana:
+#    image: grafana/grafana
+#    ports:
+#      - "3000:3000"
+#    depends_on:
+#      - prometheus
+
+services:
+
+  prometheus:
+    image: prom/prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+
+  grafana:
+    image: grafana/grafana
+    ports:
+      - "3000:3000"
+    depends_on:
+      - prometheus
+
+  # Better option for Windows Docker metrics
+  docker-exporter:
+    image: prometheusnet/docker_exporter
+    ports:
+      - "9417:9417"
+    volumes:
+      - //var/run/docker.sock:/var/run/docker.sock

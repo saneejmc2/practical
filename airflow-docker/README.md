@@ -2,7 +2,11 @@
 
 This guide explains how to install and run **Apache Airflow 3.1.0** using Docker Compose inside a WSL (Windows Subsystem for Linux) environment. It covers all steps from setting up Ubuntu to accessing the Airflow web interface.
 
+
+Airflow now running on : http://localhost:8085
 ---
+
+## Setup Video: https://www.youtube.com/watch?v=IiczxlbQb8s&t=6674s
 
 ## Table of Contents
 
